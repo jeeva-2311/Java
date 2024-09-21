@@ -1,30 +1,11 @@
-
-### Program Overview
-This Java program collects user input of numeric values, allows multiple entries, and determines the smallest number from the collected inputs. It utilizes basic Java constructs, string manipulation, and user interaction.
+Here’s a more concise version in four points:
 
 ### Techniques Used
 
-1. **User Input Handling**:
-   - **Scanner Class**: Utilizes `Scanner` for reading user input from the console, which is a standard way to handle input in Java.
-   - **Input Validation**: Cleans and validates user input using regular expressions to ensure only numeric values are stored. This prevents invalid data entry.
-
-2. **String Manipulation**:
-   - **Trimming and Replacing**: Uses `trim()` to remove unnecessary whitespace and `replaceAll("[^0-9]", "")` to filter out non-numeric characters, ensuring that the input is clean before processing.
-   - **Concatenation**: Employs simple string concatenation to build a comma-separated list of valid numbers.
-
-3. **Control Structures**:
-   - **Conditional Statements**: Uses `if` statements to check for valid input and to provide user feedback when invalid input is encountered.
-   - **Looping with `while`**: Implements a `while` loop to allow repeated entries of numbers until the user opts to stop, demonstrating control flow in interactive applications.
-
-4. **Array and String Operations**:
-   - **String Splitting**: The program uses `split(",")` to separate the comma-separated string of numbers into an array for further processing.
-   - **Array Initialization**: Initializes an integer array to hold parsed numeric values, showcasing data structure usage.
-
-5. **Finding the Minimum Value**:
-   - **Iteration**: Uses a `for` loop to iterate through the array of integers to find the smallest number, demonstrating understanding of basic algorithms and iteration.
-
-6. **Method Definition**:
-   - **Modularity**: Implements the `smallestNum` method to encapsulate functionality for finding the smallest number. This enhances code readability and maintainability.
+1. **User Input Handling**: Utilizes `Scanner` for console input and validates it using regular expressions to ensure only numeric values are accepted.
+2. **String Manipulation**: Applies `trim()` and `replaceAll("[^0-9]", "")` to clean input and uses string concatenation to create a comma-separated list of valid numbers.
+3. **Control Structures**: Employs `if` statements for input validation and feedback, and a `while` loop for repeated entries, demonstrating effective control flow.
+4. **Finding the Minimum Value**: Implements a `for` loop to iterate through the array to find the smallest number, showcasing basic algorithmic skills and modularity through the `smallestNum` method.
 
 ### Strengths of the Code
 
