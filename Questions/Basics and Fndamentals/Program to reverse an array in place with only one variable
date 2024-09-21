@@ -1,0 +1,59 @@
+### Techniques Used
+
+**User Input with Scanner**: Utilizes the `Scanner` class for dynamic user input, allowing flexible array size and content.
+
+**Array Manipulation**: Demonstrates proficiency in handling arrays, a fundamental data structure in Java.
+
+**In-Place Reversal**: Reverses the array using a two-pointer technique, efficiently requiring O(n) time complexity.
+
+**Arithmetic Swapping**: Swaps elements without a temporary variable, minimizing memory usage but with a risk of overflow.
+
+**Input Validation**: Includes a loop to ensure valid positive input for the array size, demonstrating basic error handling.
+
+### Strengths of the Program
+
+**Efficiency**: Reverses the array in place, saving memory, especially for large datasets.
+
+**Simplicity and Readability**: Straightforward code structure enhances maintainability and collaboration.
+
+**Practical Application**: Applies fundamental Java concepts, showcasing programming skills in a real context.
+
+**Problem Solving**: Highlights critical thinking in algorithms and data manipulation.
+
+**Dynamic User Interaction**: Engages users by allowing input for array size and elements.
+
+Let me know if you need any more adjustments!
+Code : 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" Enter the size of the array");
+        int size = sc.nextInt(); 
+
+        while( size <= 0 ){
+            System.out.println(" Eneter a positive number");
+            size = sc.nextInt();
+        }
+
+        int[] array = new int[size];
+        for( int i = 0; i < size; i++ )
+        {
+            array[i] = sc.nextInt();
+        }
+        sc.close();
+        System.out.println("Entered array is " + Arrays.toString(array));
+        array = reverse(array);
+        System.out.println("Entered array is " + Arrays.toString(array));
+    }
+    static int[] reverse(int[] array){
+        for( int i = 0; i < array.length/2; i++){
+            array[i] += array[(array.length-1)-i];
+            array[(array.length-1)-i] = array[i] - array[(array.length-1)-i];
+            array[i] -= array[(array.length-1)-i];
+        }
+        return array;
+    }
+}
