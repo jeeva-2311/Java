@@ -1,0 +1,49 @@
+
+### Techniques Used
+
+1. **User Input with `Scanner`**: Uses the `Scanner` class for dynamic input of array size and elements.
+2. **Input Validation**: Implements a loop to ensure valid positive size input, demonstrating error handling.
+3. **Array Initialization**: Initializes and populates an array based on user input.
+4. **Enhanced For Loop**: Employs an enhanced for loop in the `add` method for clear summation.
+5. **Method Decomposition**: Encapsulates summation logic in a separate method for modularity.
+
+### Strengths of the Program
+
+1. **Efficiency**: Calculates the sum in O(n) time complexity.
+2. **Robustness**: Validates user input to ensure predictable behavior.
+3. **Clarity**: Clear variable names and modular code enhance readability and maintainability.
+4. **Practical Application**: Demonstrates fundamental Java concepts, showcasing programming skills.
+5. **User Engagement**: Provides an interactive user experience for input.
+
+Code : 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" Enter the size of the array");
+        int size = sc.nextInt(); 
+
+        while( size <= 0 ){
+            System.out.println(" Enter a positive number");
+            size = sc.nextInt();
+        }
+
+        int[] array = new int[size];
+        for( int i = 0; i < size; i++ )
+        {
+            array[i] = sc.nextInt();
+        }
+        sc.close();
+        System.out.println("Entered array is " + Arrays.toString(array));
+        System.out.println("The sume is " + add(array));
+    }
+    static int add(int[] array){
+        int sum = 0;
+        for( int item : array ){
+            sum += item;
+        }
+        return sum;
+    }
+}
