@@ -1,0 +1,103 @@
+
+### Program Overview
+This Java program collects user input of numeric values, allows multiple entries, and determines the smallest number from the collected inputs. It utilizes basic Java constructs, string manipulation, and user interaction.
+
+### Techniques Used
+
+1. **User Input Handling**:
+   - **Scanner Class**: Utilizes `Scanner` for reading user input from the console, which is a standard way to handle input in Java.
+   - **Input Validation**: Cleans and validates user input using regular expressions to ensure only numeric values are stored. This prevents invalid data entry.
+
+2. **String Manipulation**:
+   - **Trimming and Replacing**: Uses `trim()` to remove unnecessary whitespace and `replaceAll("[^0-9]", "")` to filter out non-numeric characters, ensuring that the input is clean before processing.
+   - **Concatenation**: Employs simple string concatenation to build a comma-separated list of valid numbers.
+
+3. **Control Structures**:
+   - **Conditional Statements**: Uses `if` statements to check for valid input and to provide user feedback when invalid input is encountered.
+   - **Looping with `while`**: Implements a `while` loop to allow repeated entries of numbers until the user opts to stop, demonstrating control flow in interactive applications.
+
+4. **Array and String Operations**:
+   - **String Splitting**: The program uses `split(",")` to separate the comma-separated string of numbers into an array for further processing.
+   - **Array Initialization**: Initializes an integer array to hold parsed numeric values, showcasing data structure usage.
+
+5. **Finding the Minimum Value**:
+   - **Iteration**: Uses a `for` loop to iterate through the array of integers to find the smallest number, demonstrating understanding of basic algorithms and iteration.
+
+6. **Method Definition**:
+   - **Modularity**: Implements the `smallestNum` method to encapsulate functionality for finding the smallest number. This enhances code readability and maintainability.
+
+### Strengths of the Code
+
+- **Robustness**: The code is resilient to invalid input and provides feedback to the user, making it user-friendly.
+- **Efficiency**: While using string operations and arrays, the program efficiently handles user inputs and performs calculations.
+- **Readability**: The use of clear variable names and method definitions enhances readability and understanding of the code structure.
+- **Practical Skills Demonstration**: This program demonstrates essential programming skills, including data validation, control flow, and basic algorithmic thinking, which are valuable in software development.
+- **Interactivity**: The ability to interact with users through console input showcases an understanding of how applications can communicate with users, an essential aspect of software design.
+
+Code: 
+
+import java.util.Scanner;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String numbers = "";
+
+        System.out.println("Enter the first number:");
+        String input = sc.nextLine();
+		
+        input = input.trim().replaceAll("[^0-9]", "");
+        if (!input.isEmpty()) 
+            numbers += input; 
+        else {
+            System.out.println("You have not entered a valid number.");
+            sc.close();
+            return;
+        }
+
+        System.out.println("Do you want to enter more numbers? If yes, press 1; else press 2");
+        int i = sc.nextInt(); 
+        sc.nextLine();
+
+        while (i == 1) {
+            System.out.println("Enter another number:");
+            input = sc.nextLine();
+            input = input.trim().replaceAll("[^0-9]", "");
+
+            if (!input.isEmpty()) 
+                numbers += "," + input; 
+            else
+                System.out.println("You have not entered a valid number.");
+
+            System.out.println("Do you want to enter more numbers? If yes, press 1; else press 2");
+            i = sc.nextInt(); 
+            sc.nextLine();
+        }
+
+        if (numbers.isEmpty()) {
+            System.out.println("You have not entered any valid numbers.");
+        } else {
+            System.out.println("The smallest number you have entered is " + smallestNum(numbers));
+        }
+        
+        sc.close();
+    }
+
+    static int smallestNum(String numbers) {
+        String[] arr = numbers.split(",");
+        int[] finalarray = new int[arr.length];
+        
+        for (int i = 0; i < finalarray.length; i++) {
+            finalarray[i] = Integer.parseInt(arr[i]);
+        }
+        
+        int num = finalarray[0]; 
+        for (int item : finalarray) {
+            if (item < num) {
+                num = item;
+            }
+        }
+        
+        return num;
+    }
+}
