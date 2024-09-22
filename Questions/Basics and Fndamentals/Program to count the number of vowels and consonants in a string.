@@ -1,0 +1,43 @@
+### Techniques Used
+
+1. **User Input Handling**: Utilized the `Scanner` class for reading input and applied a regular expression to filter out non-alphabetic characters.
+2. **String Manipulation**: Employed `replaceAll("[^a-zA-Z]", "")` to clean the input and normalized case for consistent vowel comparison.
+3. **Control Structures**: Implemented a `for` loop and conditional statements to iterate through the string and count vowels and consonants.
+4. **Modular Design**: Encapsulated the counting logic within a separate method for improved readability and maintainability.
+
+### Strengths
+
+1. **Accuracy**: Effectively counts only valid alphabetic characters, ensuring precise results.
+2. **Efficiency**: Processes the string in a single pass, achieving O(n) time complexity.
+3. **Simplicity**: Clear code structure enhances understandability and ease of modifications.
+4. **Practical Application**: Demonstrates fundamental programming skills, including string manipulation and user input handling.
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+
+        // User input
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the word you want:");
+        String myString = sc.nextLine().replaceAll("[^a-zA-Z]", "").trim(); // Keep only alphabetic character
+        sc.close();
+
+        // Method call
+        count(myString.toLowerCase()); // Convert to lowercase for uniformity
+        
+    }
+    
+    // Method to count the vowels and consonents
+    static void count(String myString){
+        int v = 0, c = 0;
+        for(int i = 0 ; i < myString.length() ; i--)
+            if(myString.charAt(i) == 'a'|| myString.charAt(i) == 'e'|| myString.charAt(i) == 'i'|| myString.charAt(i) == 'o'|| myString.charAt(i) == 'u' ) 
+                v++ ;
+            else 
+                c++;
+        System.out.println("There are " + v + " vowels and " + c + " consonents in the word you have entered.");
+    }
+}
