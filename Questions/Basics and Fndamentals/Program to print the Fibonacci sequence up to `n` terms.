@@ -1,0 +1,59 @@
+### Techniques Used
+
+1. **User Input Handling**: Utilizes the `Scanner` class to read user input and ensures valid integer input by using a `while` loop for validation.
+2. **Fibonacci Sequence with Recursion**: Implements recursion in the `digit` function to calculate Fibonacci numbers based on the classic recursive formula.
+3. **Looping for Output**: A `for` loop iterates through the Fibonacci sequence and prints each value, allowing dynamic output up to the user-defined number of terms.
+4. **Input Validation**: The program handles invalid input and provides a retry mechanism, improving robustness by prompting the user to re-enter valid data or exit.
+
+### Strengths
+
+1. **Recursion Mastery**: Demonstrates understanding of recursion, a key concept in algorithm design, used here for calculating Fibonacci numbers.
+2. **Input Validation**: Ensures the program can handle incorrect inputs gracefully, avoiding crashes and improving user experience.
+3. **User-Friendly Interaction**: Interactive prompts and feedback guide the user through input and validation processes, making the program more intuitive.
+4. **Efficient Output**: The sequence is dynamically generated up to `n` terms, efficiently managing the calculation of each Fibonacci number.
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+
+        // initialization
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of iterations needed :");
+        int num = 0;
+
+        // Ask user input until a valid number is entered or user chooses to exit
+        while(true) {
+            if(sc.hasNextInt()){
+                num = sc.nextInt();
+                break;
+            }
+            else{
+                // Check for user input to retry or exit
+                System.out.println("You have not entered a valid number. If want to enter again, press 1 ");
+                sc.nextLine();
+                if ( !(sc.nextInt() == 1) )
+                    break;
+            }
+                
+        }
+        sc.close();
+
+        //Output 
+        if (num == 0)
+            System.out.println("You have entered 0");
+        else{
+            System.out.println("The sequence is : ");
+            for(int i = 0; i < num; i++)
+                System.out.println(digit(i));
+        }
+    }
+    //Recursice function to return nth number of the sequence
+    static int digit(int num){
+        if (num == 0) return 0;
+        else if (num == 1) return 1;
+        else return digit( num - 1 ) + digit( num - 2 );
+    }
+}
