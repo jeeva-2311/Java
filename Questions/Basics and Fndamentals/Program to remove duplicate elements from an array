@@ -1,0 +1,62 @@
+### Techniques Used
+1. **Array Traversal**: The program iterates through the input array to identify and remove duplicate values.
+2. **String Manipulation**: Concatenates unique integers into a string, which is then split into an array of strings for conversion back to integers.
+3. **Nested Loop**: Utilizes a nested loop to compare elements for duplicates, checking all previous elements for each current element.
+4. **Condition Checking**: Implements flag-based logic to determine if the current element is a duplicate before adding it to the result.
+
+### Strengths
+1. **Simplicity**: The approach is straightforward and easy to understand, making it accessible for beginners.
+2. **Direct Input Handling**: Allows user input for the size and elements of the array, making it dynamic.
+3. **Basic Duplicate Removal**: Successfully identifies and removes duplicates from the array, providing a clean output.
+4. **Memory Usage**: Uses a simple string to manage unique values, which can be efficient for small input sizes. 
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+
+        // initialization
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the total number of digits in the array");
+        int num = sc.nextInt();
+        int[] array = new int[num];
+
+        // Ask user input for the array
+        System.out.println("Enter the digis ");
+        for (int i = 0 ; i < array.length ; i++)
+            array[i] = sc.nextInt();
+        sc.close();
+
+        //Output 
+        int[] reversedarray = remove(array);
+        System.out.println("The array with duplicates removed is : ");
+        for (int i = 0  ; i < reversedarray.length ; i++)
+            System.out.println(reversedarray[i]);        
+    }
+    //Method to remove duplicates from the array
+    static int[] remove(int[] array){
+        String s = "";
+        int flag = 0;
+        for (int i = 0 ; i < array.length ; i++ ){
+            flag = 0;
+            if (i > 0)
+                for (int j = 0 ; j < i ; j ++ )
+                    if (array[i] == array[j]){
+                        flag = 1;
+                        break; 
+                    }
+
+            if( flag == 0 )
+                s += " " + Integer.toString(array[i]);
+        }
+        String[] rstring = s.trim().split(" ");
+        int[] rarray = new int[rstring.length];
+
+        for(int i = 0 ; i < rarray.length ; i++)
+            rarray[i] = Integer.parseInt(rstring[i]);
+
+        return rarray;
+    }
+}
