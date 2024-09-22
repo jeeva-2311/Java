@@ -1,0 +1,42 @@
+### Techniques Used
+
+1. **User Input Handling**: The program uses the `Scanner` class for real-time user input, taking a string and cleaning it up with `trim()` to remove leading/trailing spaces.
+2. **String Manipulation**: A custom `reverse()` method is implemented to reverse the input string by iterating through it from the end to the beginning. The program compares the reversed string with the original one using `equalsIgnoreCase()`, making it case-insensitive.
+3. **Control Structures**: Utilizes a `for` loop to iterate over the string in reverse order and build the reversed version.
+4. **Conditional Logic**: A ternary operator is used for succinct conditional checking, displaying whether the string is a palindrome or not.
+
+### Strengths of the Program
+
+- **Efficiency**: Handles string reversal and comparison in a single pass using basic loop structures.
+- **Simplicity**: The code is clean, straightforward, and easy to understand, highlighting fundamental concepts like loops and conditionals.
+- **Practicality**: Demonstrates real-world usage of string manipulation, user input handling, and palindrome checking.
+- **Maintainability**: The use of modular methods (`reverse()` for reversing the string) makes it easier to maintain and enhance the program in the future.
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+
+        // User input
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the word you want:");
+        String myString = sc.nextLine().trim();
+        sc.close();
+
+        // Output
+        System.out.println("Word you have entered is " + myString);
+        System.out.println(myString.equalsIgnoreCase(reverse(myString)) ? 
+            "The word you have entered is a palindrome" : 
+            "The word you have entered is not a palindrome");
+    }
+    
+    // Method to reverse the string
+    static String reverse(String myString){
+        String reString = "";
+        for(int i = myString.length() - 1; i >= 0; i--)
+            reString += myString.charAt(i);
+        return reString;
+    }
+}
