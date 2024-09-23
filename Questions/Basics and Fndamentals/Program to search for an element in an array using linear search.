@@ -1,0 +1,56 @@
+### Techniques Used:
+1. **User Input Handling**: The program prompts the user to enter the size of the array and the elements, ensuring proper interaction.
+2. **Input Validation**: It checks if the user enters a valid array size (greater than 1) using a `while` loop.
+3. **Linear Search Algorithm**: The `search` method implements a linear search to find the target element by iterating through the array.
+4. **Boolean Return**: The search method returns a boolean value indicating whether the target was found, which simplifies the output logic.
+
+### Strengths:
+1. **Simplicity**: The program is straightforward and easy to understand, making it suitable for beginners.
+2. **Robustness**: The input validation ensures that the program does not crash with invalid array sizes.
+3. **Efficiency for Small Arrays**: Linear search works effectively for small arrays where more complex search algorithms may not be necessary.
+4. **No Additional Data Structures**: The implementation uses only the array and a few variables, maintaining a low memory footprint.
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+        
+        //Initialization
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of digits in the array");
+        int size = sc.nextInt();
+
+        //Check to see if user entered valid array size
+        while(size < 2){
+            System.out.println("Not a valid input. Please enter more than 1 ");
+            size = sc.nextInt();
+        }
+        int[] array = new int[size];
+
+        //Array and target input
+        System.out.println("Enter the array elements: ");
+        for(int i = 0; i < array.length; i++)
+            array[i] = sc.nextInt();
+            
+        System.out.println("Enter the number you want to find : ");
+        int target = sc.nextInt();
+        sc.close();
+
+        //Method call and output
+        System.out.println( search(array, target) ? 
+        "The number " + target + " is found in the array" :
+        "The number " + target + " is not found in the array");
+        
+    }
+
+    //Method to linear search
+    static boolean search(int[] array, int target){
+        for(int i = 0; i < array.length ; i++) 
+            if( array[i] == target)
+                return true;
+        return false;
+    }
+    
+}
