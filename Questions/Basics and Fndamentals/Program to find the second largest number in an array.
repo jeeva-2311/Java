@@ -1,0 +1,59 @@
+### Techniques Used
+1. **Input Validation:** The program includes a loop to ensure the user enters a valid array size (greater than 1), improving robustness.
+2. **Sequential Searching:** The program uses two separate loops: one to find the largest number and another to find the second largest. This is a straightforward approach that clearly separates the logic.
+3. **Conditional Checks:** After determining the second largest number, the program includes conditional checks to handle cases where all values are the same or if there are zeroes.
+4. **Direct Array Manipulation:** The program directly manipulates and accesses the array without using any additional data structures, keeping memory usage minimal.
+
+### Strengths
+1. **Clarity and Simplicity:** The code is easy to read and understand, making it accessible for beginners learning about arrays and loops.
+2. **Handles Edge Cases:** The program accounts for special cases, such as all identical numbers or arrays with zeros, providing a fallback behavior.
+3. **Efficiency:** The approach of finding the largest and second largest numbers with a linear scan ensures that the solution operates in O(n) time complexity.
+4. **User Interaction:** The program provides clear prompts to the user, making it user-friendly and interactive. It also validates input to ensure correct operation.
+
+Code:
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+        
+        //Initialization
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of digits in the array");
+        int size = sc.nextInt();
+
+        //Check to see if user entered valid array size
+        while(size < 2){
+            System.out.println("Not a valiid input. Please enter more than 1 ");
+            size = sc.nextInt();
+        }
+        int[] array = new int[size];
+
+        //Array input
+        System.out.println("Enter the array elements: ");
+        for(int i = 0; i < array.length; i++)
+            array[i] = sc.nextInt();
+        sc.close();
+        
+        //Method call and output
+        System.out.println("The second largest number in the array is : " + secondLargest(array));
+        
+    }
+
+    //Method to find second largest number
+    static int secondLargest(int[] array){
+        int first = array[0], second = 0;
+        for(int i = 1 ; i < array.length ; i++)
+            if(array[i] > first)
+                first = array[i];
+        for(int j = 0 ; j < array.length ; j++)
+            if(array[j] < first  && array[j] > second)
+                second = array[j];
+
+        // Conditional check to see if user has entered the same number or only 0's
+        if (first == 0)
+            return 0;
+        return (first > 0 && second == 0) ? first : second;
+    }
+    
+}
