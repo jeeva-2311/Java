@@ -1,0 +1,50 @@
+### Techniques Used
+1. **Input Validation:** The program uses `Scanner` to read user input and checks if the input is an integer using `hasNextInt()`, ensuring only valid data is processed.
+2. **Digit Count Calculation:** It calculates the number of digits (NOD) in the input number using `Integer.toString(num).length()`, which is essential for the Armstrong number logic.
+3. **Mathematical Calculation:** The program uses `Math.pow()` to compute the power of each digit raised to the number of digits, summing them to determine if they equal the original number.
+4. **Conditional Logic:** It employs a ternary operator to provide concise output based on whether the number is an Armstrong number.
+
+### Strengths
+1. **Robust Input Handling:** By validating user input before processing, the program prevents runtime errors and ensures better user experience.
+2. **Clear Structure:** The separation of concerns is evident with a dedicated method for checking Armstrong numbers, making the code easier to read and maintain.
+3. **Efficient Computation:** The algorithm efficiently computes the sum of the digits raised to the appropriate power without unnecessary complexity.
+4. **User-Friendly Output:** The program provides clear messages to the user, indicating whether the input number is an Armstrong number or not.
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+        
+        //Initialization
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number : ");
+
+        //Check to see if user entered valid number
+        while(!(sc.hasNextInt())){
+            System.out.println("Not a valid input. Please enter a valid number.");
+            sc.next();
+        }
+        int num = sc.nextInt();
+        sc.close();
+
+        //Method call and output
+        System.out.println( isArmstrong(num) ? 
+        "The number is an armstrong number." :
+        "The number is not an armstrong number" );
+        
+    }
+
+    //Method to armstrong number
+    static boolean isArmstrong(int num){
+        int sum = 0, nod = Integer.toString(num).length();
+        int temp = num ;
+        while ( temp > 0){
+            sum += Math.pow(temp % 10, nod);
+            temp = temp / 10;
+        }
+        return num == duplicate ? true : false;
+    }
+    
+}
