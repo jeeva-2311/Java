@@ -1,0 +1,51 @@
+### Techniques Used
+1. **Input Validation:** The program checks that the user enters a valid array size (greater than 1), ensuring meaningful calculations.
+2. **Sequential Summation:** It uses a single loop to calculate the sum of the array elements, which simplifies the process of averaging.
+3. **Type Casting:** The program casts the sum and length to `double` to ensure that the division yields a decimal result, preventing integer division.
+4. **Method Encapsulation:** The calculation of the average is encapsulated in a separate method (`average`), promoting code reuse and modular design.
+
+### Strengths
+1. **Simplicity and Readability:** The code is straightforward and easy to understand, making it suitable for beginners.
+2. **Efficient Calculation:** The average is calculated in O(n) time complexity, where n is the number of elements in the array, ensuring efficiency.
+3. **User-Friendly Interaction:** The program provides clear prompts for user input, enhancing the user experience.
+4. **Robustness:** The validation for array size ensures that the program doesn't run into issues with small or invalid arrays, making it more robust.
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+        
+        //Initialization
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of digits in the array");
+        int size = sc.nextInt();
+
+        //Check to see if user entered valid array size
+        while(size < 2){
+            System.out.println("Not a valid input. Please enter more than 1 ");
+            size = sc.nextInt();
+        }
+        int[] array = new int[size];
+
+        //Array input
+        System.out.println("Enter the array elements: ");
+        for(int i = 0; i < array.length; i++)
+            array[i] = sc.nextInt();
+        sc.close();
+
+        //Method call and output
+        System.out.println("The average of the array is : " + average(array));
+        
+    }
+
+    //Method to find average of the array
+    static double average(int[] array){
+        int sum = 0;
+        for(int i = 0; i < array.length ; i++) 
+            sum += array[i];
+        return (double)sum / array.length;
+    }
+    
+}
