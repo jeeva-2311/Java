@@ -1,0 +1,63 @@
+### Techniques Used:
+1. **Bubble Sort Algorithm**: The program employs a basic bubble sort method, comparing adjacent elements in the array and swapping them to sort the array in ascending order.
+2. **Recursive Loop with Condition Check**: The sorting is done iteratively inside a `while` loop, which continues to call the sorting function until the array is fully sorted.
+3. **Array Input via Scanner**: User inputs are handled using the `Scanner` class to dynamically create and fill the array based on the specified size.
+4. **Validation of Sorting**: The `isBig()` method checks whether the array is sorted by ensuring that every element is smaller than or equal to the next.
+
+### Strengths:
+1. **Simple and Readable**: The program uses a clear and straightforward approach, making it easy to understand, especially for beginners.
+2. **Reusability**: The sorting and validation functions (`sort()` and `isBig()`) are modular, enabling their reuse in different parts of the code or future programs.
+3. **Interactive**: The use of `Scanner` allows user interaction for inputting the array, making it adaptable to different datasets.
+4. **Sorted Array Output**: The program provides a clean output of the sorted array, iterating through each element and displaying it to the user.
+
+Code: 
+
+import java.util.*;
+
+public class HelloWorld{
+    public static void main(String[] args){
+        
+        //Initialization
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of digits in the array");
+        int size = sc.nextInt();
+        int[] array = new int[size];
+
+        //Array input
+        System.out.println("Enter the array elements: ");
+        for(int i = 0; i < array.length; i++)
+            array[i] = sc.nextInt();
+
+        //Recursive sort method call
+        while(!isBig(array))
+            array = sort(array);
+        
+        //Sorted array output
+        System.out.println("The sorted array is : ");
+        for(int i : array)
+            System.out.println(i);
+        
+    }
+
+    //Sorting method
+    static int[] sort(int[] array){
+        int temp = 0, count = 0;
+        for(int i = 0 ; i < array.length ; i++) 
+            for(int j = i+1 ; j < array.length ; j++)
+                if(array[i] > array[j]){
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                } 
+        return array;
+    }
+
+    //Checks if array is sorted
+    static boolean isBig(int[] array){
+        for( int i = 0 ; i < array.length - 1; i++ )
+            if(array[i] > array[i + 1])
+                return false;
+        return true;
+    }
+    
+}
