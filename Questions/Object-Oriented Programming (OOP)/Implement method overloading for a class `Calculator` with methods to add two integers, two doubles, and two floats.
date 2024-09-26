@@ -1,0 +1,52 @@
+
+
+Code:
+
+import java.util.Scanner;
+
+class InnerHelloWorld {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter 1 to calculate two integers, 2 to calculate two doubles, and 3 to calculate two floats:");
+        int option;
+        
+        // Validate input for option selection
+        while (!sc.hasNextInt()) {
+            System.out.println("Please enter a valid integer");
+            sc.next();  // Discard invalid input
+        }
+        option = sc.nextInt();
+
+        Calculator calc = new Calculator(); // Create Calculator instance
+        
+        // Perform calculations based on user's choice
+        if (option == 1) {
+            System.out.println("Enter the two integers: ");
+            int num1 = sc.nextInt();
+            int num2 = sc.nextInt();
+            System.out.println("The sum of these two integers is " + calc.add(num1, num2));
+        } else if (option == 2) {
+            System.out.println("Enter the two doubles: ");
+            double num1 = sc.nextDouble();
+            double num2 = sc.nextDouble();
+            System.out.println("The sum of these two doubles is " + calc.add(num1, num2));
+        } else if (option == 3) {
+            System.out.println("Enter the two floats: ");
+            float num1 = sc.nextFloat();
+            float num2 = sc.nextFloat();
+            System.out.println("The sum of these two floats is " + calc.add(num1, num2));
+        } else {
+            System.out.println("Invalid option selected. Please restart the program and choose a valid option.");
+        }
+
+        sc.close(); // Close the scanner to free resources
+    }
+}
+
+// Calculator class
+class Calculator {
+    public int add(int a, int b) { return a + b; }
+    public float add(float a, float b) { return a + b; }
+    public double add(double a, double b) { return a + b; }
+}
