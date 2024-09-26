@@ -1,0 +1,69 @@
+### Techniques Used:
+1. **Interface Implementation**: The program defines a `Shape` interface with methods that are implemented by multiple classes (`Rectangle` and `Circle`), showcasing the use of interfaces to enforce a contract across different shapes.
+2. **Method Overloading**: The `Circle` class uses method overloading to handle both the `area()` and `perimeter()` methods with a single parameter (radius), while adhering to the `Shape` interface.
+3. **Polymorphism**: The program demonstrates polymorphism by allowing the same method (`area` and `perimeter`) to behave differently for rectangles and circles through overriding.
+4. **Scanner for User Input**: The `Scanner` class is used to take user input dynamically, making the program interactive.
+
+### Strengths:
+1. **Flexibility and Extensibility**: The use of interfaces allows for easy extension, meaning additional shapes like `Triangle` or `Square` could be added without modifying the existing code.
+2. **Separation of Concerns**: Each shape class (e.g., `Rectangle`, `Circle`) handles its own logic for calculating area and perimeter, adhering to the single responsibility principle.
+3. **Overloading for Specific Behavior**: Method overloading in `Circle` ensures that the class can implement the `Shape` interface while still providing meaningful behavior for a single-parameter shape.
+4. **Interactive and User-Friendly**: The program interacts with the user through the console, prompting for input and providing real-time results for the area and perimeter calculations.
+
+Code: 
+import java.util.Scanner;
+
+class InnerHelloWorld{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner( System.in );
+
+        //Creating rectangle
+        System.out.println("Hello, enter the length and breadth of the rectangle to get the area and perimeter");
+        int length = sc.nextInt(); 
+        int breadth = sc.nextInt();
+        Rectangle myRec = new Rectangle();
+        System.out.println("The area and perimeter of the rectangle are: " + myRec.area(length, breadth) + " and " + myRec.perimeter(length, breadth));
+        
+        //Creating Circle
+        System.out.println("Enter the radius of the rectangle to get the area and perimeter");
+        int radius = sc.nextInt();
+        sc.close();
+        Circle myCir = new Circle();
+        System.out.printf("The area and perimeter of the rectangle are: %.2f and %.2f", myCir.area(radius), myCir.perimeter(radius));
+    }
+
+}
+// Interface shape
+interface Shape {
+    public double area(int a, int b);
+    public double perimeter(int a, int b);
+}
+//Rectangle class
+class Rectangle implements Shape {
+    @Override
+    public double area(int a, int b){
+        return a * b;
+    }
+    @Override
+    public double perimeter(int a, int b){
+        return 2 * ( a + b );
+    }
+}
+//Circle class
+class Circle implements Shape {
+    @Override
+    public double area(int a, int b){
+        return 0;
+    }
+    @Override
+    public double perimeter(int a, int b){
+        return 0;
+    }
+    //Overloading methods
+    public double area(int a){
+        return Math.PI * a * a;
+    }
+    public double perimeter(int a){
+        return 2 * Math.PI * a;
+    }
+}
