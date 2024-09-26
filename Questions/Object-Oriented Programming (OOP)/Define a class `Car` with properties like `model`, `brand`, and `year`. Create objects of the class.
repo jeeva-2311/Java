@@ -1,0 +1,53 @@
+### Techniques Used
+
+1. **Encapsulation**: The `Car` class uses private fields (`brand`, `model`, and `year`) to protect the data and only allows access via public getter and setter methods. This ensures that data cannot be accessed or modified directly from outside the class.
+2. **Getter and Setter Methods**: The program demonstrates the use of getter (`getBrand()`) and setter (`setBrand()`) methods, which follow the JavaBeans convention, providing controlled access and modification of class attributes.
+3. **Object Creation and Initialization**: A new `Car` object is created and initialized with values through method calls (`newCar.setBrand("Toyota")`), showing basic object instantiation and interaction in Java.
+4. **`this` Keyword Usage**: Inside the setter methods, the `this` keyword is used to reference the current object's fields, ensuring there’s no ambiguity between instance variables and method parameters.
+
+### Strengths of the Code
+
+- **Encapsulation**: The use of private fields enhances security by restricting direct access to the object's data, ensuring the class manages how its data is accessed or modified.
+- **Code Reusability**: The `Car` class is reusable for creating multiple car objects and can be expanded with more properties or methods without changing its core functionality.
+- **Maintainability**: The clear separation of data (in the `Car` class) and logic (in the `HelloWorld` class) makes the program easier to maintain and extend as requirements change.
+- **Scalability**: By employing getter and setter methods, the program can be easily modified to include additional logic (e.g., validation within setters) without affecting the rest of the code, making it scalable for future use.
+
+Code: 
+
+class HelloWorld{
+    public static void main(String[] args){
+        Car newCar = new Car();
+        newCar.setBrand("Toyota");
+        System.out.println(newCar.getBrand());
+    }
+}
+
+class Car{
+    private String brand, model;
+    private int year; 
+
+    void setBrand(String brand){
+        this.brand = brand;
+    }
+
+    String getBrand(){
+        return this.brand;
+    }
+    
+    void setModel(String model){
+        this.model = model;
+    }
+
+    String getModel(){
+        return this.model;
+    }
+
+    void setYear(int year){
+        this.year = year;
+    }
+
+    int getYear(){
+        return this.year;
+    }
+
+}
