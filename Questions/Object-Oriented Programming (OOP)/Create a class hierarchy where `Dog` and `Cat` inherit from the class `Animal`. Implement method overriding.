@@ -1,0 +1,81 @@
+### Techniques Used:
+1. **Class Inheritance**: The `Dog` and `Cat` classes inherit from the `Animal` class, allowing them to share common properties and methods while also extending their functionality.
+2. **Encapsulation**: The fields (`age`, `name`, and `breed`) in the `Animal` class are declared as private, ensuring that they cannot be accessed directly from outside the class. Public getter and setter methods provide controlled access to these fields.
+3. **Method Overriding**: The `Dog` and `Cat` classes override the `setName`, `setBreed`, and `setAge` methods from the `Animal` class to include additional behavior (printing the name, breed, and age).
+4. **Use of `super`**: The overridden methods in `Dog` and `Cat` use the `super` keyword to call the parent class's methods, maintaining the functionality of the `Animal` class while adding subclass-specific behavior.
+
+### Strengths:
+1. **Code Reusability**: Common attributes and methods are defined once in the `Animal` class, reducing redundancy and making the code easier to maintain.
+2. **Maintainability**: The program structure allows for easy changes; any updates to the `Animal` class are automatically reflected in the `Dog` and `Cat` classes, promoting a clean and maintainable codebase.
+3. **Extensibility**: New animal types can be easily added by creating new subclasses of `Animal`, following the same pattern without altering the existing code.
+4. **Readability**: The code is well-organized and easy to read, with clear relationships between classes and clear behavior defined in overridden methods, making it easier for others (or future you) to understand the logic.
+5. **Output Clarity**: The program provides clear console output indicating the name, breed, and age of each animal, which is helpful for testing and debugging.
+
+Code: 
+
+class HelloWorld{
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        Cat myCat = new Cat();
+        myDog.setName("Scuby");
+        myDog.setBreed("Beagle");
+        myDog.setAge(5);
+
+        myCat.setName("Wiskerson");
+        myCat.setBreed("Siamese");
+        myCat.setAge(3);
+    }
+
+}
+class Animal{
+    private int age;
+    private String name;
+    private String breed;
+    void setName(String name){
+        this.name = name;
+    }
+    void setBreed(String breed){
+        this.breed = breed;
+    }
+    void setAge(int age){
+        this.age = age;
+    }
+    String getName(){return name;}
+    String getBreed(){return breed;}
+    int getAge(){return age;}
+}
+class Dog extends Animal{
+    @Override
+    void setName(String name){
+        super.setName(name);
+        System.out.println("Dog name: " + name);
+    }
+    @Override
+    void setBreed(String breed){
+        super.setBreed(breed);
+        System.out.println("Dog breed: " + breed);
+    }
+    @Override
+    void setAge(int age){
+        super.setAge(age);
+        System.out.println("Dog age: " + age);
+    }
+}
+
+class Cat extends Animal{
+    @Override
+    void setName(String name){
+        super.setName(name);
+        System.out.println("Cat name: " + name);
+    }
+    @Override
+    void setBreed(String breed){
+        super.setBreed(breed);
+        System.out.println("Cat breed: " + breed);
+    }
+    @Override
+    void setAge(int age){
+        super.setAge(age);
+        System.out.println("Cat age: " + age);
+    }
+}
