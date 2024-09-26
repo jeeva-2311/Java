@@ -27,16 +27,16 @@
 24. Create an interface `Shape` with methods `area()` and `perimeter()`. Implement the interface for classes `Circle` and `Rectangle`.
 25. Implement method overloading for a class `Calculator` with methods to add two integers, two doubles, and two floats.
 26. Write a program demonstrating the use of `this` keyword in Java.
-27. Implement a constructor and destructor (using `finalize()` method) for a class `Person`.
+27. Implement a constructor and a method to display the details of a class Person.
 28. Demonstrate how static variables and methods work using a `Student` class.
 29. Create an abstract class `BankAccount` with a method `calculateInterest`. Extend it in classes `SavingsAccount` and `CurrentAccount`.
-30. Write a program demonstrating the use of `super` keyword in method overriding.
+30. Write a program where a Vehicle class is extended by a Car class, demonstrating the use of super to access the base class's properties.
 31. Create a class `Book` with multiple constructors (constructor overloading).
-32. Implement a simple **singleton pattern** using a class `DatabaseConnection`.
+32. Write a program to create a Configuration class that loads settings from a file.
 33. Write a program demonstrating **composition** (a class within another class).
 34. Create a class `Employee` with a method `getDetails()`. Demonstrate polymorphism by creating subclasses `Manager` and `Developer` with different implementations of `getDetails()`.
-35. Create a class `ComplexNumber` and overload operators for addition and subtraction of two complex numbers.
-36. Demonstrate the difference between shallow copy and deep copy in a class.
+35. Create a class ComplexNumber and implement methods for adding and subtracting two complex numbers.
+36. Write a program to create a class that stores a list of integers, demonstrating how to create copies of the list.
 37. Implement a `toString()` method for a class `Product` to print its details in a readable format.
 38. Write a program to create and compare objects using the `equals()` method.
 39. Implement a custom `Comparator` for sorting a list of `Person` objects by their age.
@@ -91,7 +91,7 @@
 80. Create a program that uses a `TreeSet` to store and sort a list of unique words from a text file.
 81. Write a program to demonstrate the use of `Comparator` to sort objects.
 82. Create a program to demonstrate the difference between `HashMap` and `TreeMap`.
-83. Write a program to implement a **LRU cache** using `LinkedHashMap`.
+83. Write a program to demonstrate the use of a simple cache using a HashMap, where items can be added and retrieved.
 84. Demonstrate the usage of `Queue` and `Deque` interfaces in a simple program.
 85. Write a program to merge two sorted lists using `Collections` utility methods.
 
@@ -114,4 +114,4 @@
 97. Implement a basic **Banking System** with classes for `Account`, `Transaction`, and `Customer`.
 98. Create a console-based **Tic-Tac-Toe** game.
 99. Build a **Student Management System** with CRUD operations for adding, deleting, and modifying student details.
-100. Implement a basic **Task Management** application where users can add tasks, mark them as completed, and list all tasks.
+100. Write a program to create a simple to-do list application that allows users to add tasks and view the list of tasks.
