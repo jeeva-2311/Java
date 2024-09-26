@@ -1,0 +1,70 @@
+### Techniques Used
+1. **Encapsulation**: The `Person` class encapsulates the fields `name`, `age`, and `gender` by declaring them as private. This restricts direct access from outside the class and protects the data integrity.
+2. **Constructor**: The `Person` class includes a constructor that initializes the object’s attributes, allowing for the creation of a fully defined object upon instantiation.
+3. **Method Implementation**: The program defines getter methods (`getName`, `getAge`, `getGender`) to provide controlled access to the private fields and a `displayDetails` method to output the object's data in a formatted way.
+4. **User Input Handling**: The program utilizes the `Scanner` class to gather user input, demonstrating effective input handling techniques in Java.
+
+### Strengths
+1. **Clear Structure**: The separation of concerns is well-defined, with the `InnerHelloWorld` class handling user input and the `Person` class managing data and displaying information, promoting readability and maintainability.
+2. **User-Friendly Output**: The `displayDetails` method presents the information in a clear and formatted manner, making it easy for users to understand the output.
+3. **Modular Design**: The design allows for easy modification and extension. For example, additional methods can be added to the `Person` class without affecting the main program logic.
+4. **Data Protection**: By using encapsulation, the program protects the integrity of the data. Future changes to how data is stored or validated can be done within the `Person` class without impacting other parts of the code.
+
+Code: 
+
+import java.util.Scanner;
+
+class InnerHelloWorld {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Getting input for the person
+        System.out.println("Enter name of the person: ");
+        String name = sc.nextLine(); 
+        System.out.println("Enter gender of the person (M/F): ");
+        char g = sc.nextLine().charAt(0);
+        System.out.println("Enter age of the person: ");    
+        int age = sc.nextInt();
+        sc.close(); // Close the scanner to free resources
+
+        // Object creation
+        Person person = new Person(name, age, g);
+        
+        // Displaying the details of the person
+        person.displayDetails();
+    }
+}
+
+// Person class
+class Person {
+    private String name; 
+    private int age; 
+    private char gender; 
+
+    // Constructor to initialize Person object
+    public Person(String name, int age, char gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    public String getName() {
+        return name; 
+    }
+
+    public int getAge() {
+        return age; 
+    }
+
+    public char getGender() {
+        return gender; 
+    }
+
+    // Method to display the details of the person
+    public void displayDetails() {
+        System.out.println("Person Details:");
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Gender: " + gender);
+    }
+}
