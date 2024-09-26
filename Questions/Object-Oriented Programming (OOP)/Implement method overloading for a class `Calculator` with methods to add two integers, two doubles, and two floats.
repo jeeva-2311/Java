@@ -1,4 +1,14 @@
+### Techniques Used
+1. **Method Overloading**: Implemented multiple `add` methods in the `Calculator` class for different parameter types (int, float, double), demonstrating polymorphism.
+2. **Input Validation**: Used `Scanner` and its `hasNextInt()`, `nextInt()`, `nextDouble()`, and `nextFloat()` methods to ensure that user inputs are valid before performing calculations.
+3. **Control Flow**: Utilized conditional statements (`if-else`) to determine which operation to perform based on user input, enhancing the program's interactivity.
+4. **Resource Management**: Closed the `Scanner` object at the end of the program to prevent resource leaks, adhering to best practices in resource management.
 
+### Strengths
+1. **User-Friendly Interface**:  Clear prompts and instructions guide the user through the input process, making it easy to understand and use.
+2. **Robust Input Handling**:  The program effectively handles invalid inputs, ensuring that users cannot proceed without providing valid data, which increases the program's reliability.
+3. **Extensibility**: The design allows for easy addition of more methods (e.g., subtraction, multiplication) in the `Calculator` class without affecting existing functionality.
+4. **Polymorphism**: Demonstrates the concept of polymorphism through method overloading, making the code more flexible and easier to maintain.
 
 Code:
 
