@@ -1,0 +1,85 @@
+### Techniques Used
+1. **Inheritance**: The `Car` class extends the `Vehicle` class, allowing it to inherit properties and methods.
+2. **Encapsulation**: The properties `numOfWheels` and `type` in the `Vehicle` class are private, which protects the data and restricts direct access from outside the class.
+3. **Constructor Usage**: The `Vehicle` class constructor initializes the `type` property. The `Car` class constructor calls the superclass constructor using `super(type)`.
+4. **Method Overriding**: The `Car` class has its own implementations of the `setWheels`, `getWheels`, and `getType` methods, which call the superclass methods using `super`.
+
+### Strengths
+1. **Code Reusability**: The `Car` class can use the existing functionality of the `Vehicle` class, promoting code reuse.
+2. **Maintainability**: Encapsulation makes it easier to manage and modify the code. Changes to the `Vehicle` class do not directly affect the `Car` class.
+3. **User Interaction**: The program interacts with the user to get input, demonstrating how to handle user data in a simple console application.
+4. **Clear Structure**: The separation of the `Vehicle` and `Car` classes makes the code easy to read and understand.
+
+Code: 
+
+import java.util.*;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        // Initialization
+        Scanner sc = new Scanner(System.in);
+        int numberOfWheels;
+        String type;
+
+        // User input for vehicle type and number Of Wheels
+        System.out.println("Hello, Enter the type of vehicle you want to create: ");
+        type = sc.nextLine();
+        System.out.println("Enter the number of wheels your vehicle has: ");
+        numberOfWheels = sc.nextInt();
+        sc.close();
+        
+        // Creating an object of Car class
+        Car toyota = new Car(type);
+        toyota.setWheels(numberOfWheels);
+        System.out.println("Toyota is a " + toyota.getType() + " with " + toyota.getWheels() + " wheels");
+    }
+}
+
+// Base class Vehicle
+class Vehicle {
+    private int numOfWheels; // Number of wheels
+    private String type; // Type of vehicle
+    
+    // Constructor for Vehicle class
+    protected Vehicle(String type) {
+        this.type = type;
+    }
+
+    // Method to set number of wheels
+    void setWheels(int numOfWheels) {
+        this.numOfWheels = numOfWheels;
+    }
+
+    // Method to get number of wheels
+    int getWheels() {
+        return numOfWheels;
+    }
+
+    // Method to get type of vehicle
+    String getType() {
+        return type;
+    }
+}
+
+// Derived class Car extending Vehicle
+class Car extends Vehicle {
+    // Constructor for Car class
+    public Car(String type) {
+        super(type); // Call to the superclass constructor
+    }
+
+    // Method to set number of wheels
+    void setWheels(int numOfWheels) {
+        super.setWheels(numOfWheels); // Call to the superclass method
+    }
+
+    // Method to get number of wheels
+    int getWheels() {
+        return super.getWheels(); // Call to the superclass method
+    }
+
+    // Method to get type of vehicle
+    String getType() {
+        return super.getType(); // Call to the superclass method
+    }
+}
