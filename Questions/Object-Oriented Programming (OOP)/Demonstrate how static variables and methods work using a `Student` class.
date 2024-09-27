@@ -1,0 +1,61 @@
+### Techniques Used:
+1. **Static Variables**: `CLASS` and `GRP` are declared as static, meaning they belong to the `Student` class itself and not to any instance of it.
+2. **Static Methods**: Methods `average()` and `sum()` are static, allowing them to be called using the class name `Student`, without needing an instance of the class.
+3. **Varargs (Variable Arguments)**: Both methods utilize `int... numbers` (varargs), allowing you to pass a variable number of arguments when calculating the sum and average.
+4. **Input Handling**: Uses `Scanner` to get user input for name and marks, and closes the `Scanner` after the input is processed.
+
+### Strengths:
+1. **Demonstration of Static Variables**: `CLASS` and `GRP` are accessed directly through the `Student` class, which illustrates how static variables work at the class level.
+2. **Reusability**: The static methods `average()` and `sum()` can be used without creating an instance of the `Student` class, making them reusable and efficient.
+3. **Varargs Flexibility**: The use of varargs allows the program to handle any number of input marks, making the methods flexible and adaptable to different situations.
+4. **Clear Output**: The program provides clear output, showing the class, group, average, and sum of the marks entered, which makes it easy to verify that static methods and variables are functioning as expected.
+
+Code: 
+
+import java.util.*;
+
+class HelloWorld{
+    public static void main(String[] args) {
+        //initialization
+        Scanner sc = new Scanner(System.in);
+        String name; 
+        int mat, phy, che;
+
+        //calling static variables
+        System.out.println(" Enter name : ");
+        name = sc.nextLine();
+        System.out.println(
+            "Student : " + name + " of class : " + Student.CLASS + " and group : " + Student.GRP + 
+            " is registered. Enter their marks in Maths, Physics and chemistry. ");
+
+        //calling static methods
+        mat = sc.nextInt();
+        phy = sc.nextInt();
+        che = sc.nextInt();
+        sc.close();
+        System.out.println(" Average of the student is : " + Student.average(mat, phy, che) + 
+            " and sum of the marks is : " + Student.sum(mat, phy, che) );
+    }
+}
+
+//Student class with static methods and variables
+class Student{
+    //Variables
+    static String CLASS = "10B";
+    static int GRP = 2;
+
+    //Methods
+    static double average(int... numbers){
+        int sum = 0; 
+        for ( int i : numbers )
+            sum += i;
+        return sum/numbers.length;
+    }
+    static int sum(int... numbers){
+        int sum = 0; 
+        for ( int i : numbers )
+            sum += i;
+        return sum;
+    }
+
+}
