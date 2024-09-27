@@ -1,0 +1,82 @@
+### Techniques Used
+1. **Abstract Classes**: The program uses an abstract class `BankAccount` to define a blueprint for various types of bank accounts. This allows for defining common functionality while enforcing subclasses to implement specific behaviors (like calculating interest).
+2. **Polymorphism**: By using a common reference type (`BankAccount account`), the program can instantiate different account types (`Savings` or `Current`) and call the appropriate methods based on the actual object type at runtime.
+3. **Encapsulation**: The `Savings` and `Current` classes encapsulate the details of their respective implementations, including account-specific behaviors (like interest rates) and instance variables for counting the number of accounts. This keeps related data and methods together.
+4. **Dynamic Method Dispatch**: The method `calculateInterest` is overridden in subclasses, allowing the program to determine the appropriate method to call at runtime based on the object type.
+
+### Strengths
+1. **Flexibility and Extensibility**: The program is designed to easily accommodate new account types by simply creating new subclasses of `BankAccount`. This adheres to the Open/Closed Principle of software design, where the code can be extended without modifying existing code.
+2. **Separation of Concerns**: The logic for calculating interest is encapsulated within each specific account class. This separation allows for cleaner code and easier maintenance, as changes to one account type do not affect others.
+3. **User-Friendly Input Handling**: The program captures user input for account type and principal amount, making it interactive and easy to use. The user can specify their account type without needing to understand the underlying class structure.
+4. **Encapsulation of Account Tracking**: Each account type keeps track of its own instance-specific variables (`numberOfSAccounts` and `numberOfCAccounts`), which can be beneficial for tracking the number of accounts a user has if expanded in future functionality.
+
+Code: 
+
+import java.util.*;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        // Initialization
+        Scanner sc = new Scanner(System.in);
+        int accountType;
+        double principal;
+
+        // User input for account type and principal amount
+        System.out.println("Hello, Enter your account type (1 for Savings and 2 for Current account): ");
+        accountType = sc.nextInt();
+        System.out.println("Enter the principal amount you want to deposit: ");
+        principal = sc.nextDouble();
+        sc.close();
+        
+        // Creating object based on account type
+        BankAccount account;
+        if (accountType == 1) {
+            account = new Savings();
+        } else {
+            account = new Current();
+        }
+
+        System.out.println("You will receive an interest of: " + account.calculateInterest(principal));
+    }
+}
+
+// Abstract class BankAccount
+abstract class BankAccount {
+    abstract double calculateInterest(double principal);
+}
+
+// Savings account class
+class Savings extends BankAccount {
+    private int numberOfSAccounts = 0; // Instance variable for number of savings accounts
+
+    public Savings() {
+        numberOfSAccounts++;
+    }
+
+    @Override
+    double calculateInterest(double principal) {
+        return principal * 0.08; // 8% interest
+    }
+
+    public int getNumberOfSAccounts() {
+        return numberOfSAccounts;
+    }
+}
+
+// Current account class
+class Current extends BankAccount {
+    private int numberOfCAccounts = 0; // Instance variable for number of current accounts
+
+    public Current() {
+        numberOfCAccounts++;
+    }
+
+    @Override
+    double calculateInterest(double principal) {
+        return principal * 0.03; // 3% interest
+    }
+
+    public int getNumberOfCAccounts() {
+        return numberOfCAccounts;
+    }
+}
