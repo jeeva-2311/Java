@@ -1,0 +1,105 @@
+### Techniques Used:
+1. **Constructor Overloading**: The `Book` class demonstrates multiple constructors with different parameter sets to handle varied input scenarios.
+2. **User Input with Conditional Logic**: The program takes user input to determine which constructor to invoke, using conditional statements (`if-else`).
+3. **Encapsulation with Getters**: The `Book` class uses private variables and provides public getter methods to access these properties in a controlled manner.
+4. **Default Values**: The default constructor initializes a "blank" book with placeholder values, showcasing how to set default data.
+
+### Strengths:
+1. **Flexibility**: The program provides multiple ways to instantiate a `Book` object, depending on the available information (title, author, year, or price).
+2. **Modular Design**: By separating constructors and using encapsulation, the class is easy to maintain and extend with additional constructors if needed.
+3. **User-Focused Input**: The user is prompted to enter relevant information, making the program interactive and adaptable to different inputs.
+4. **Reusability**: The `Book` class can be reused in other parts of a larger system, with its flexible constructors making it adaptable for various use cases.
+
+Code: 
+
+import java.util.Scanner;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        // Initialization
+        Scanner sc = new Scanner(System.in);
+        String title; 
+        String author; 
+        double price; 
+        int year;
+        int input;
+
+        // Getting user input and creating objects
+        System.out.println("Enter 1 to create a book with title and author, 2 to create a book with price and year, or 3 to create a blank book.");
+        input = sc.nextInt();
+        sc.nextLine();  // Consume newline
+
+        if (input == 1) {
+            // Get title and author input
+            System.out.print("Enter the book title: ");
+            title = sc.nextLine();
+            System.out.print("Enter the author's name: ");
+            author = sc.nextLine();
+            
+            // Create book with title and author
+            Book myBook = new Book(title, author);
+            System.out.println("You have created a book with title: " + myBook.getTitle() + " and author: " + myBook.getAuthor());
+        } else if (input == 2) {
+            // Get year and price input
+            System.out.print("Enter the publication year: ");
+            year = sc.nextInt();
+            System.out.print("Enter the book price: ");
+            price = sc.nextDouble();
+            
+            // Create book with year and price
+            Book myBook = new Book(year, price);
+            System.out.println("You have created a book with year: " + myBook.getYear() + " and price: " + myBook.getPrice());
+        } else {
+            // Create a blank book
+            Book myBook = new Book();
+            System.out.println("You have created a blank book.");
+        }
+
+        sc.close();
+    }
+}
+
+// Book class with multiple constructors (constructor overloading)
+class Book {
+    private String title; 
+    private String author; 
+    private Double price; 
+    private int year;
+
+    // Constructor with title and author
+    Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    // Constructor with year and price
+    Book(int year, Double price) {
+        this.year = year;
+        this.price = price;
+    }
+
+    // Default constructor for blank book
+    Book() {
+        this.title = "Unknown";
+        this.author = "Unknown";
+        this.year = 0;
+        this.price = 0.0;
+    }
+
+    // Getters
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public int getYear() {
+        return year;
+    }
+}
