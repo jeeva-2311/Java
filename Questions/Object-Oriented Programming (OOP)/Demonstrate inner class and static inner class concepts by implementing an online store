@@ -1,0 +1,92 @@
+### Techniques Used:
+1. **Nested Classes (Inner and Static Classes)**: The `Product` class is an inner class, demonstrating how an object of an inner class can be created using an outer class instance. The `Category` class is a static nested class that provides shared functionality (discount logic) across all products.
+2. **Constructor Chaining**: The constructor in the `Product` class is used to initialize product details, showing how to pass arguments into an inner class and access outer class properties.
+3. **Encapsulation**: Fields such as `productName`, `price`, and `categoryType` in the `Product` class are encapsulated with private access, ensuring controlled access to these variables through methods.
+4. **Static Methods and Fields**: The `Category` class demonstrates the use of static fields and methods to provide a shared, reusable resource (discount calculation), while the `Product` class uses a static field `unitsBought` to track purchases globally across all instances.
+
+### Strengths:
+1. **Demonstrates Clear Use of Nested Classes**: The program uses both inner and static nested classes effectively, enhancing readability and encapsulation of related functionality (store, product, and category).
+2. **Modular Structure**: The design is modular, with each responsibility—store management, product creation, and category management—handled by separate classes, promoting clean code architecture.
+3. **Reusability**: The `Category.getDiscount()` method is static, allowing the discount logic to be reused across multiple product instances without requiring multiple objects.
+4. **Real-World Applicability**: The program simulates a real-world scenario (a store with products and categories), making it an excellent learning example for business-related software design.
+
+Code: 
+
+import java.util.Scanner;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // User inputs
+        System.out.println("Welcome to the store creation wizard! Enter the store name you want to add the product in:");
+        String storeName = sc.nextLine(); 
+        System.out.println("Enter its type for confirmation:");
+        String storeType = sc.nextLine();
+        System.out.println("Enter the product name and its price:");
+        String productName = sc.nextLine();
+        double price = sc.nextDouble();
+        sc.nextLine(); // Consumes newline
+        System.out.println("Enter its category type:");
+        String categoryType = sc.nextLine();
+
+        // Creating objects
+        Store store = new Store(storeName, storeType); // Outer class object
+        Store.Product newProduct = store.new Product(productName, categoryType, price); // Inner class object
+
+        newProduct.transaction(productName);
+    }
+}
+
+class Store {
+    String storeName; 
+    String storeType;
+
+    // Constructor to initialize store details
+    Store(String storeName, String storeType) {
+        this.storeName = storeName;
+        this.storeType = storeType;
+    }
+
+    // Inner class Product
+    class Product {
+        private String productName;
+        private double price; 
+        private String categoryType;
+        private static int unitsBought = 0;  // Static to track across all instances
+        
+        // Constructor for Product
+        Product(String productName, String categoryType, double price) {
+            this.productName = productName;
+            this.price = price;
+            this.categoryType = categoryType;
+        }
+
+        // Transaction method to display purchase details
+        void transaction(String productName) {
+            double discount = Category.getDiscount(categoryType);  // Call to static method
+            double finalPrice = price - (price * discount);
+            System.out.println("You just bought a " + productName + " costing " + price + 
+                               " with a discount of " + (discount * 100) + "%." +
+                               " Final price: " + finalPrice +
+                               " in a " + Store.this.storeType + " store named " + Store.this.storeName);
+            unitsBought++;
+        }
+    }
+
+    // Static nested class Category
+    static class Category {
+        static String category1 = "Consumer electronics"; 
+        static String category2 = "Apparels";
+
+        // Method to return discount based on category
+        static double getDiscount(String category) {
+            if (category.equalsIgnoreCase(category1)) {
+                return 0.05; // 5% discount
+            } else if (category.equalsIgnoreCase(category2)) {
+                return 0.07; // 7% discount
+            }
+            return 0.01; // Default 1% discount
+        }
+    }
+}
