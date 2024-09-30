@@ -41,7 +41,7 @@
 38. Write a program to create and compare objects using the `equals()` method.
 39. Implement a custom `Comparator` for sorting a list of `Person` objects by their age.
 40. Write a program to demonstrate the concept of **final classes** and **final methods**.
-41. Create an interface `Payment` with a method `processPayment()`. Implement it in classes `CreditCardPayment` and `PaypalPayment`.
+41. Create an interface `Payment` with a method `processPayment()`. Implement it in classes `CreditCardPayment` and `PaypalPayment`. Also use anonymous class
 42. Create a class `University` with static inner classes `Department` and `Course`.
 43. Write a program to demonstrate **downcasting** and **upcasting** in a class hierarchy.
 44. Create a **builder pattern** implementation for a class `House`.
