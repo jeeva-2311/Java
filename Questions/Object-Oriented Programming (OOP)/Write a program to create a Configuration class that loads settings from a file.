@@ -1,0 +1,76 @@
+### Techniques Used
+1. **File Handling**: Uses `File` and `Scanner` classes to read settings from a text file.
+2. **String Comparison**: Implements `equals()` for comparing strings accurately.
+3. **Control Structures**: Utilizes conditional operators to determine configuration type based on user input.
+4. **Constructor Overloading**: Uses a constructor to initialize settings based on user input, adhering to OOP principles.
+5. **Exception Handling**: Incorporates try-catch blocks for robust error management during file operations.
+
+### Strengths of the Program
+1. **Modularity**: Structured into classes for clear responsibilities, enhancing maintainability.
+2. **User Interaction**: Offers a simple console interface for intuitive user input.
+3. **Dynamic Configuration**: Loads settings from a file based on user input, providing flexibility.
+4. **Error Handling**: Prevents crashes with informative error messages, improving user experience.
+5. **Scalability**: Allows easy addition of settings without significant code changes, supporting future enhancements.
+
+Code: 
+
+import java.util.Scanner;
+import java.io.File;
+
+//Configuration class
+class Configuration{
+
+    // Settings the class handles
+    private int brightness; 
+    private int fanspeed;
+    private int sound;
+    private double mouseSpeed;
+
+    // Constructor to load the settings based on user usage type
+    public Configuration(String type){
+        try{
+            File settingsFile = new File("Settings.txt");
+            Scanner filescan = new Scanner(settingsFile);
+            while(filescan.hasNextLine()){
+                String Line = filescan.nextLine();
+                if (Line.equals(type)){
+                    this.brightness = filescan.nextInt();
+                    this.fanspeed = filescan.nextInt();
+                    this.sound = filescan.nextInt();
+                    this.mouseSpeed = filescan.nextDouble();
+                    break;
+                }
+            }
+            filescan.close();
+        }catch(Exception e){ System.out.println("Error: " + e.getMessage());}
+    }
+
+    @Override
+    public String toString(){
+        return ("Your current configuration settings are \nBrightness: " + brightness 
+        + "\nFanspeed: " + fanspeed 
+        + "\nSound: " + sound
+        + "\nMouseSpeed: " + mouseSpeed
+        );
+    }
+}
+
+class HelloWorld{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        //Getting user input for configuration type
+        System.out.println("Enter what you are going to use the laptop mainly for: (1 for Gaming, 2 for movies, 3 for general browsing)");
+        int type = sc.nextInt();
+        sc.close();
+        
+        //Assigning configuration settings type based on user input
+        String ctype = ""; 
+        ctype = (type == 1 ? "Gaming" : (type == 2 ? "Movies": "Browsing"));
+
+        //Creating object to set user settings
+        Configuration settings = new Configuration(ctype);
+        //Printing results
+        System.out.println(settings.toString());
+    }
+}
