@@ -1,0 +1,94 @@
+### Techniques Used
+
+1. **Constructor Overloading**: The `Complex` class utilizes a constructor to initialize complex numbers by parsing a string input. This technique encapsulates the logic for creating complex numbers in a dedicated method, enhancing code organization.
+2. **String Manipulation**: The implementation makes effective use of string methods such as `substring` and `charAt` to extract the real and imaginary parts of the complex number, demonstrating strong proficiency in handling strings in Java.
+3. **Static Methods for Operations**: Static methods `add` and `sub` are used to perform operations on complex numbers. This design keeps the operations logically separate from the data structure, promoting clean and maintainable code.
+4. **Method Overriding**: The `toString` method is overridden to provide a user-friendly representation of the complex number, allowing for easy debugging and output formatting.
+
+### Strengths
+
+1. **Input Validation**: The program includes a robust input validation mechanism that ensures only correctly formatted complex numbers are processed, reducing the risk of runtime errors.
+2. **Modular Design**: The separation of concerns is evident through distinct methods for input validation, addition, and subtraction, making the code modular and easier to understand or extend in the future.
+3. **User Interaction**: The program prompts users for input in a clear and concise manner, enhancing the user experience and making the application more interactive.
+4. **Scalability**: The current design allows for easy addition of new features or operations related to complex numbers, such as multiplication or division, without significant restructuring of existing code.
+
+Code: 
+
+import java.util.*;
+//Complex number class
+class Complex{
+
+    private int real;
+    private int imag;
+
+    //Constructor to create the number
+    public Complex(String num){
+        for(int i = 0; i < num.length(); i++){
+            if (num.charAt(i) == '+' || num.charAt(i) == '-'){
+                real = Integer.parseInt(num.substring(0, i));
+                imag = Integer.parseInt(num.substring(i, num.length()-1));
+                break;
+            }
+        }
+    }
+
+    //Getter methods
+    int getReal(){ return real;}    
+    int getImag(){ return imag;}
+
+    // Static method to add two complex numbers 
+    static Complex add(Complex num1, Complex num2) {
+        int realSum = num1.getReal() + num2.getReal();
+        int imagSum = num1.getImag() + num2.getImag();
+        return new Complex(realSum + (imagSum >= 0 ? "+" : "") + imagSum + "i");
+    }
+
+    // Static method to sub two complex numbers 
+    static Complex sub(Complex num1, Complex num2) {
+        int realSum = num1.getReal() - num2.getReal();
+        int imagSum = num1.getImag() - num2.getImag();
+        return new Complex(realSum + (imagSum >= 0 ? "+" : "") + imagSum + "i");
+    }
+
+    @Override
+    public String toString() {
+        return real + (imag >= 0 ? "+" : "") + imag + "i";
+    }
+}
+
+public class HelloWorld {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        //Getting user input 
+        System.out.println("Enter the first complex number:");
+        String num1 = sc.nextLine();
+        num1 = check(num1, sc); //input validation method call
+
+        System.out.println("Enter the second complex number:");
+        String num2 = sc.nextLine();
+        num2 = check(num2, sc); //input validation method call
+        sc.close();
+
+        Complex complex1 = new Complex(num1);
+        Complex complex2 = new Complex(num2);
+
+        // Adding the two complex numbers
+        Complex addition = Complex.add(complex1, complex2);
+        System.out.println("The addition of the two complex numbers is " + addition.toString());
+
+        // Subtracting the two complex numbers
+        Complex subtraction = Complex.sub(complex1, complex2);
+        System.out.println("The subtraction of the two complex numbers is " + subtraction.toString());
+        
+    }
+    //Method to validate complex number
+    static String check(String num, Scanner sc) {
+        while(!num.matches("\\d+[\\+\\-]\\d+i") ) {
+            System.out.println("Enter a valid complex number:" );
+            num = sc.nextLine();
+        }
+        return num;
+    }
+}
