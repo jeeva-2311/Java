@@ -1,0 +1,95 @@
+### Techniques Used:
+1. **Polymorphism**: Demonstrated through the use of the `Employee` reference variable to invoke different `getDetails()` methods in the `Developer` and `Manager` subclasses.
+2. **Inheritance**: The `Developer` and `Manager` classes inherit from the `Employee` class, reusing common fields and behaviors while extending the functionality.
+3. **Method Overriding**: Both subclasses override the `getDetails()` method to provide their specific role-based information.
+4. **Dynamic Method Dispatch**: The appropriate `getDetails()` method is called based on the actual object type at runtime (`Developer` or `Manager`), showcasing polymorphism.
+
+### Strengths:
+1. **Code Reusability**: The `Employee` class provides common fields and methods, reducing code duplication in the `Developer` and `Manager` classes.
+2. **Maintainability**: The separation of roles into subclasses makes the code easier to extend in the future, allowing additional employee roles with minimal changes to existing code.
+3. **User Flexibility**: The program dynamically handles different employee types based on user input, offering flexibility in object creation and behavior.
+4. **Modularity**: Each class has a clear responsibility, and the program design is modular, which promotes better organization and clarity in the code.
+
+Code: 
+
+import java.util.*;
+
+class Employee{
+    int empId; 
+    String name; 
+    int grade = 1;
+    double salary = 15000;
+
+    public Employee(){}
+    public Employee(int id, String name){
+        this.empId = id; 
+        this.name = name;
+    }
+    public void getDetails(){
+        System.out.println("Employee ID : " + empId + 
+        "\nName : " + name + 
+        "\nGrade : " + grade +
+        "\nSalary : " + salary +
+        "\nRole : Employee");
+    }
+}
+
+class Developer extends Employee{
+    int grade = 2;
+    double salary = 20000;
+
+    @Override
+    public void getDetails(){
+        System.out.println("Employee ID : " + empId + 
+        "\nName : " + name + 
+        "\nGrade : " + grade +
+        "\nSalary : " + salary +
+        "\nRole : Developer");
+    }
+    public Developer(int id, String name){
+        super(id, name);
+    }
+}
+
+class Manager extends Employee{
+    int grade = 3;
+    double salary = 25000;
+
+    @Override
+    public void getDetails(){
+        System.out.println("Employee ID : " + empId + 
+        "\nName : " + name + 
+        "\nGrade : " + grade +
+        "\nSalary : " + salary +
+        "\nRole : Manager");
+    }
+    public Manager(int id, String name){
+        super(id, name);
+    }
+}
+
+/**
+ * HelloWorld
+ */
+public class HelloWorld {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        //Getting user input for creating profile
+        System.out.println("Enter which profile you want to create. (1 for Developer, 2 for Manager)");
+        int input = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Enter name and emp ID. ");
+        String name = sc.nextLine();
+        int empID = sc.nextInt();
+        //Creating object and displaying created profile based on user input
+        Employee myEmployee;
+        if(input == 1)
+            myEmployee = new Developer(empID, name); 
+        else 
+            myEmployee = new Manager(empID, name); 
+
+        myEmployee.getDetails();
+    }
+}
