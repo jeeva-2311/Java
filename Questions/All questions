@@ -33,7 +33,7 @@
 30. Write a program where a Vehicle class is extended by a Car class, demonstrating the use of super to access the base class's properties.
 31. Create a class `Book` with multiple constructors (constructor overloading).
 32. Write a program to create a Configuration class that loads settings from a file.
-33. Write a program demonstrating **composition** (a class within another class).
+33. Demonstrate inner class and static inner class concepts by implementing an online store
 34. Create a class `Employee` with a method `getDetails()`. Demonstrate polymorphism by creating subclasses `Manager` and `Developer` with different implementations of `getDetails()`.
 35. Create a class ComplexNumber and implement methods for adding and subtracting two complex numbers.
 36. Write a program to create a class that stores a list of integers, demonstrating how to create copies of the list.
