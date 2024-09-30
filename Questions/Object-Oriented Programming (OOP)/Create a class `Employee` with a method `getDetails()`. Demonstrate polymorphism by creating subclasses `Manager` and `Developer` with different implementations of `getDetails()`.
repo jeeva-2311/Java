@@ -15,12 +15,15 @@ Code:
 import java.util.*;
 
 class Employee{
+    //Basic employee details
     int empId; 
     String name; 
     int grade = 1;
     double salary = 15000;
 
+    //Default constructor
     public Employee(){}
+    //Constructor overloading
     public Employee(int id, String name){
         this.empId = id; 
         this.name = name;
@@ -83,6 +86,8 @@ public class HelloWorld {
         System.out.println("Enter name and emp ID. ");
         String name = sc.nextLine();
         int empID = sc.nextInt();
+        sc.close(); 
+
         //Creating object and displaying created profile based on user input
         Employee myEmployee;
         if(input == 1)
