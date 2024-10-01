@@ -1,0 +1,70 @@
+### Techniques Used
+
+1. **Variable-Length Arguments**: The constructor `List(int... elements)` utilizes varargs, allowing the initialization of the list with any number of integer elements. This provides flexibility in how the list can be created.
+2. **Dynamic Array Resizing**: The `append` method creates a new array each time an element is added. This demonstrates how to manage dynamic data structures manually, ensuring that the list can grow as needed.
+3. **Encapsulation**: The internal array is private, ensuring that it cannot be accessed directly from outside the class. Public methods like `array()`, `length()`, and `elementAt(int index)` provide controlled access to the data.
+4. **Copy Constructor**: The `copyList` method demonstrates a copy constructor pattern, creating a new `List` instance that duplicates the contents of an existing one without modifying the original. This is important for maintaining data integrity.
+
+### Strengths
+
+1. **Flexibility and Usability**: The use of varargs in the constructor allows users to create a `List` object easily without needing to create an array beforehand, enhancing the user experience.
+2. **Dynamic Behavior**: The ability to append elements dynamically simulates a growing data structure similar to an ArrayList, making the implementation versatile for various applications.
+3. **Data Protection**: By using private variables and providing public methods for data access, the class maintains a clean interface and protects the integrity of its internal state.
+4. **Copy Functionality**: The ability to copy the list ensures that users can create separate instances of the list without altering the original data. This is crucial for applications where the original data must remain unchanged after modifications.
+
+This design effectively showcases important concepts in Java programming such as object-oriented design, data encapsulation, and dynamic memory management, making it a solid implementation for a basic list-like structure. If you have any more questions or need further clarification, feel free to ask!
+
+Code: 
+
+//List class
+
+import java.util.Arrays;
+
+class List{
+    private int array[];
+    //constructor to create a new list
+    List(int... elements) {
+        array = new int[elements.length];
+        for(int i=0; i<elements.length; i++) this.array[i] = elements[i];
+    }
+    
+    //Method to append elements at the end of the list
+    public void append(int num){
+        int[] duplicate = new int[array.length + 1];
+        for(int i = 0; i < array.length; i++) duplicate[i] = array[i];
+        duplicate[array.length] = num;
+        array = duplicate;
+        duplicate = null;
+    }
+
+    public int[] array(){ return array;} //Method to return list as an array
+    public int length(){ return array.length;} // method to return length of the list
+    public int elementAt(int index){ return array[index];} // method to return an element stored at an given index
+
+    //Method to copy a list to another list without altering the original list
+    static List copyList(List originalList){
+        int[] copy = new int[originalList.length()];
+        for(int i=0; i < originalList.length() ; i++) copy[i] = originalList.elementAt(i);
+        return new List(copy);
+    }
+}
+
+class HelloWorld{
+    public static void main(String[] args) {
+        int[] array = {10,20,30,40,50};
+
+        List myList = new List(array); 
+        System.out.println(Arrays.toString(myList.array()));
+
+        myList.append(100); // appending a number to mylist
+        System.out.println(Arrays.toString(myList.array()));
+
+        List myList2 = List.copyList(myList); //copying mylist
+        myList2.append(222); // appending 222 to the copied list
+        //New copied list vs original list
+        System.out.println(Arrays.toString(myList2.array()) + "  vs" + (Arrays.toString(myList.array())));
+
+    }
+}
+
+
