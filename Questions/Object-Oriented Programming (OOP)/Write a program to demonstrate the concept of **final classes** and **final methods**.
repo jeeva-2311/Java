@@ -1,0 +1,51 @@
+### Techniques Used
+1. **Final Class**: The `Book` class is declared as `final`, preventing inheritance. This is useful in scenarios where you want to maintain the integrity and consistency of the class, ensuring that no subclass can alter its behavior.
+2. **Final Method**: The `getISBN` method is marked as `final`, which means it cannot be overridden by subclasses. This helps ensure that the method's functionality remains unchanged, promoting reliability and predictability.
+3. **Constructor Overloading**: The constructor of the `Book` class initializes object properties based on user input, demonstrating the use of constructors in object-oriented programming to set up initial states.
+4. **User Input**: The program uses `Scanner` to take user input, showcasing how to interact with users to create instances dynamically based on their input.
+5. **Encapsulation**: The attributes of the `Book` class are private, and access is provided through the public `getISBN` method. This encapsulates the data, protecting it from direct access and modification, and promoting data integrity.
+
+### Strengths
+1. **Robust Design**: By using final classes and methods, the design is robust against unintended modifications, ensuring that the core functionalities remain intact throughout the application.
+2. **Clarity and Readability**: The code is structured and easy to read, which is beneficial for maintenance and understanding. Naming conventions and organization enhance clarity.
+3. **Modularity**: The program is modular with the `Book` class handling book-related properties and methods. This modularity makes it easier to expand or modify individual components without affecting the entire system.
+4. **Dynamic Object Creation**: The ability to create `Book` objects based on user input adds flexibility, making the program adaptable to various scenarios and allowing users to define their data at runtime.
+
+Code: 
+
+import java.util.Scanner;
+//Book class
+final class Book{
+    String name;
+    int yearpublished; 
+    int ISBN;
+    String author; 
+    public Book(String name, int yearpublished, int ISBN, String author){ //Constructor
+        this.name = name;
+        this.yearpublished = yearpublished;
+        this.ISBN = ISBN;
+        this.author = author;
+        System.out.println("Book has been created");
+    }
+    //Final method to get ISBN of a book
+    final public int getISBN(){
+        return ISBN;
+    }
+}
+
+class HelloWorld{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        //Getting user input to create a new book 
+        System.out.println("Enter the name, year published, ISBN, author of the book you want to create: ");
+        String name = sc.nextLine();
+        int yearpublished = sc.nextInt();
+        int ISBN = sc.nextInt();
+        sc.nextLine();
+        String author = sc.nextLine();
+        //Creating the book object
+        Book book = new Book(name, yearpublished, ISBN, author);
+        System.out.println("The ISBN of the book is " + book.getISBN()); //getting ISBN using final method
+    }
+}
