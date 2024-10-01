@@ -1,0 +1,60 @@
+### Techniques Used:
+1. **Interface Usage**: The `Payment` interface is implemented by both `creditCard` and `Paypal` classes, demonstrating polymorphism and contract-based design.
+2. **Anonymous Inner Class**: Each payment method contains an anonymous inner class implementing the `processPayment()` method dynamically.
+3. **Ternary Operator**: The ternary operator is used to select the payment method based on user input in a compact and efficient way.
+4. **Encapsulation**: Each payment type (`creditCard`, `Paypal`) encapsulates its payment processing logic, keeping the `processPayment()` method within the corresponding class.
+
+### Strengths:
+1. **Extensibility**: The program can easily accommodate new payment methods by adding new classes that implement the `Payment` interface.
+2. **Dynamic Behavior**: The use of anonymous inner classes allows for flexibility in the implementation of the payment process without hardcoding specific behavior in the class definitions.
+3. **Code Reusability**: The `processPayment()` method can be reused across different payment types with specific details encapsulated within the payment class.
+4. **User Input Driven**: The program is interactive, processing payments based on user input, which allows for dynamic behavior and better user engagement.
+
+Code: 
+
+import java.util.Scanner;
+
+interface Payment{
+    public void processPayment();
+}
+class creditCard implements Payment{
+    public void processPayment(){
+        Payment p1 = new Payment(){
+            public void processPayment(){
+                System.out.println("enter you card details");
+                Scanner sc = new Scanner(System.in);
+                int cardNumber = sc.nextInt();
+                sc.close();
+                //Contacting bank server
+                //Payment processed
+                System.out.println("Payment successfully processed");
+            }
+        };
+        p1.processPayment();
+    }
+}
+
+class Paypal implements Payment{
+    public void processPayment(){
+        Payment p1 = new Payment(){
+            public void processPayment(){
+                System.out.println("enter you card details");
+                Scanner sc = new Scanner(System.in);
+                //Call paypal API to complete transaction
+                System.out.println("Payment successfully processed");
+            }
+        };
+        p1.processPayment();
+    }
+}
+
+class HelloWorld{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your preferred mode of payment( 1 for credit card and 2 for paypal)");
+        int choice = sc.nextInt();
+        Payment payment; 
+        payment = (choice == 1) ? new creditCard() : new Paypal(); 
+        payment.processPayment();
+    }
+}
