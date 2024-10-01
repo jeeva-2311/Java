@@ -1,0 +1,83 @@
+### Techniques Used:
+1. **Static Inner Classes**: `Department` and `Course` are implemented as static inner classes, allowing them to be instantiated independently of an outer `University` object.
+2. **Object-Oriented Programming (OOP)**: Uses constructors for each class to initialize objects with parameters like `name` and `id`.
+3. **Input Handling**: Utilizes `Scanner` to gather input from users.
+4. **Separation of Concerns**: Each class has a specific role, representing a different component of the university system.
+
+### Strengths:
+1. **Modular Design**: Clear separation of `University`, `Department`, and `Course`, making the system modular and maintainable.
+2. **Static Inner Classes**: Improves flexibility by allowing independent creation of inner class objects.
+3. **Reusability**: Classes and methods can easily be reused or extended in different contexts.
+4. **User Interaction**: Incorporates user input effectively, demonstrating dynamic object creation based on input.
+
+Code: 
+
+import java.util.Scanner;
+
+class University{
+    String Name; 
+    int id;
+    //Constructor of outer class
+    public University(String Name, int id){
+        this.Name = Name;
+        this.id = id;
+        System.out.println("University created");
+    }
+
+    //Static inner class
+    static class Department{
+        String Name; 
+        int id; 
+        public Department(String Name, int id){ //Constructor of inner class
+            this.Name = Name; 
+            this.id = id;
+            System.out.println("Department created");
+        }
+    }
+
+    static class Course{
+        String Name; 
+        int id; 
+        public Course(String Name, int id){ //Constructor of inner class
+            this.Name = Name; 
+            this.id = id;
+            System.out.println("Course created");
+
+        }
+    }
+}
+
+class HelloWorld{
+    public static void main(String[] args) {
+        //initialization
+        Scanner sc = new Scanner(System.in); 
+        String name;
+        int id;
+
+        //Inputs to create university object
+        System.out.println("Enter the university name and ID to create a university. ");
+        name = sc.nextLine();
+        id = sc.nextInt();
+        sc.nextLine();
+
+        University uni = new University(name, id); //University object
+
+        //Inputs for department objects
+        System.out.println("Enter the department name and id of the university");
+        name = sc.nextLine();
+        id = sc.nextInt();
+        sc.nextLine();
+
+        //Creating department object without using university object
+        University.Department department = new University.Department(name, id);
+
+        System.out.println("Enter the Course name and id of the university");
+        name = sc.nextLine();
+        id = sc.nextInt();
+        sc.nextLine();
+
+        //Creating course object without using university object
+        University.Course course = new University.Course(name, id);
+        sc.close();
+    }
+}
